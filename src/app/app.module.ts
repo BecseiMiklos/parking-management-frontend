@@ -8,6 +8,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {CarRegisterComponent} from './car-register/car-register.component';
 import {
   ButtonModule,
+  CardModule,
   CheckboxModule,
   InputMaskModule,
   InputTextModule,
@@ -17,12 +18,17 @@ import {
 } from 'primeng/primeng';
 import {FormsModule} from '@angular/forms';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {HomeComponent} from './home/home.component';
+import {GrowlModule} from 'primeng/components/growl/growl';
+import {MessageService} from 'primeng/components/common/messageservice';
+import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CarRegisterComponent
+    CarRegisterComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -36,9 +42,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     CheckboxModule,
     ButtonModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    GrowlModule,
+    CardModule,
+    AutoCompleteModule
   ],
-  providers: [HttpClient],
+  providers: [HttpClient, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

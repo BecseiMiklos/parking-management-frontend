@@ -1,0 +1,22 @@
+<div class="ui-g">
+  <div class="ui-g-12" style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <div>
+      <h2 style="text-align: center;">Manage cars</h2>
+
+      <span class="ui-float-label">
+      <p-autoComplete id="licensePlateNumber" [(ngModel)]="selectedCar" [suggestions]="filteredCars" [dropdown]="true" dropdownMode="blank"
+                      (completeMethod)="search($event)" field="licensePlateNumber" emptyMessage="No cars found." [forceSelection]="true"
+                      maxlength="6"></p-autoComplete>
+        <label for="licensePlateNumber">License plate number</label>
+
+      </span>
+    </div>
+
+    <div class="ui-g-12" style="display: flex; justify-content: center;">
+      <div class="ui-g-4" style="display: flex; justify-content: space-evenly;">
+        <button pButton label="Enter" style="width: 130px;" (click)="enterCar()"></button>
+        <button pButton label="Exit" style="width: 130px;" (click)="exitCar()"></button>
+      </div>
+    </div>
+  </div>
+</div>

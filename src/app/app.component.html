@@ -1,5 +1,15 @@
+<p-growl></p-growl>
+
 <div style="text-align:center">
   <h1>Parking Management System</h1>
 </div>
 
-<router-outlet></router-outlet>
+<nav>
+  <a routerLink="/home" routerLinkActive="active">Home</a>
+  <a routerLink="/car-register" routerLinkActive="active">Register</a>
+</nav>
+
+<p-card [style]="{'margin-left': '2.5em', 'margin-right': '2.5em'}">
+  <router-outlet></router-outlet>
+</p-card>
+

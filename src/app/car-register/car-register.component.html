@@ -1,38 +1,43 @@
-<div class="ui-g-12 ui-md-12" style="display: flex; justify-content: center; flex-wrap: wrap;">
-  <h2 class="ui-g-12 ui-md-12" style="text-align: center;">Register</h2>
-  <p-messages class="ui-g-9 ui-md-9" [(value)]="msgs"></p-messages>
+  <div class="ui-g">
+    <div class="ui-g-12" style="display: flex; justify-content: center;">
+      <div class="ui-g-4">
+        <h2 style="text-align: center;">Register</h2>
+        <form #carForm="ngForm" (ngSubmit)="saveNewCar(carForm)">
+          <div class="ui-g-12">
+              <span class="ui-float-label">
+              <input name="licensePlateNumber" id="licensePlateNumber" style="width: 100%;"
+                     [(ngModel)]="carVO.licensePlateNumber" type="text" size="6" pInputText required>
+              <label for="licensePlateNumber">License plate number</label>
+            </span>
+          </div>
+          <div class="ui-g-12" style="margin-top: 0.3em;">
+          <span class="ui-float-label">
+            <input name="brand" id="brand" style="width: 100%;" [(ngModel)]="carVO.brand" type="text" size="30"
+                   pInputText
+                   required>
+            <label for="brand">Brand</label>
+          </span>
 
-  <div class="ui-g-4 ui-md-4">
-    <form #carForm="ngForm" (ngSubmit)="saveNewCar(carForm)">
-      <div class="ui-g-12 ui-md-12">
-        <span class="ui-float-label">
-          <input name="licensePlateNumber" id="licensePlateNumber" style="width: 100%;" [(ngModel)]="carVO.licensePlateNumber" type="text" size="6" pInputText required>
-          <label for="licensePlateNumber">License plate number</label>
-        </span>
-      </div>
+          </div>
 
-      <div class="ui-g-12 ui-md-12">
-        <span class="ui-float-label">
-          <input name="brand" id="brand" style="width: 100%;" [(ngModel)]="carVO.brand" type="text" size="30" pInputText required>
-          <label for="brand">Brand</label>
-        </span>
-      </div>
+          <div class="ui-g-12" style="margin-top: 0.3em;">
+          <span class="ui-float-label">
+            <input name="color" id="color" style="width: 100%;" [(ngModel)]="carVO.color" type="text" size="30"
+                   pInputText
+                   required>
+            <label for="color">Color</label>
+          </span>
+          </div>
 
-      <div class="ui-g-12 ui-md-12">
-        <span class="ui-float-label">
-          <input name="color" id="color" style="width: 100%;" [(ngModel)]="carVO.color" type="text" size="30" pInputText required>
-          <label for="color">Color</label>
-        </span>
-      </div>
+          <div class="ui-g-12" style="text-align: center;">
+            <p-checkbox name="hasParkingPass" [(ngModel)]="carVO.hasParkingPass" binary="true"
+                        label="Has parking pass"></p-checkbox>
+          </div>
 
-      <div class="ui-g-12 ui-md-12" style="text-align: center;">
-        <p-checkbox name="hasParkingPass" [(ngModel)]="carVO.hasParkingPass" binary="true" label="Has parking pass"></p-checkbox>
+          <div class="ui-g-12 ui-md-12" style="text-align: center;">
+            <button pButton label="Save"></button>
+          </div>
+        </form>
       </div>
-
-      <div class="ui-g-12 ui-md-12" style="text-align: center;">
-        <button pButton label="Save"></button>
-      </div>
-    </form>
+    </div>
   </div>
-
-</div>

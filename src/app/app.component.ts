@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
+import {MessageService} from 'primeng/components/common/messageservice';
 
 @Component({
   selector: 'app-root',
@@ -8,23 +9,8 @@ import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 })
 export class AppComponent {
 
-  title = 'app';
+  constructor() {
 
-  constructor(private http: HttpClient) {
-    // let params = new HttpParams();
-    // params = params.append('licensePlate', 'AAA000');
-    //
-    // this.http.get('http://localhost:8080/car/list', {params: params}).toPromise()
-    //   .then((response: any[]) => {
-    //     console.log(response);
-    //   })
-    //   .catch(err => {
-    //     if (err instanceof HttpErrorResponse) {
-    //       console.error(err.error.message);
-    //     } else {
-    //       console.log(err);
-    //     }
-    //   });
   }
 
 }
