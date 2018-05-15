@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpParams} from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -11,10 +11,20 @@ export class AppComponent {
   title = 'app';
 
   constructor(private http: HttpClient) {
-    this.http.get('http://localhost:8080/car/list').toPromise()
-      .then((response: any[]) => {
-        console.log(response);
-      });
+    // let params = new HttpParams();
+    // params = params.append('licensePlate', 'AAA000');
+    //
+    // this.http.get('http://localhost:8080/car/list', {params: params}).toPromise()
+    //   .then((response: any[]) => {
+    //     console.log(response);
+    //   })
+    //   .catch(err => {
+    //     if (err instanceof HttpErrorResponse) {
+    //       console.error(err.error.message);
+    //     } else {
+    //       console.log(err);
+    //     }
+    //   });
   }
 
 }
