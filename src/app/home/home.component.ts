@@ -1,9 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient, HttpErrorResponse} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {CarVO} from '../vo/car-vo';
 import {isNullOrUndefined} from 'util';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {ParkingVO} from '../vo/parking-vo';
+import {RestService} from '../rest.service';
 
 @Component({
   selector: 'app-home',
@@ -17,25 +18,17 @@ export class HomeComponent implements OnInit {
   selectedCar: CarVO;
 
   constructor(private http: HttpClient,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private restService: RestService) {
   }
 
-  ngOnInit() {
-    // let params = new HttpParams();
-    // params = params.append('licensePlate', 'BBB111');
-
-    this.http.get('http://localhost:8080/car/list')
-      .toPromise().then((response: any[]) => {
-      console.log(response);
-      this.cars = response;
-    })
-      .catch(err => {
-        if (err instanceof HttpErrorResponse) {
-          console.error(err.error.message);
-        } else {
-          console.log(err);
-        }
-      });
+  ngOnInit(): void {
+    this.restService.get('car/list')
+      .then(res => {
+        console.log(res);
+        this.cars = res.data;
+      })
+      .catch(err => console.error(err));
   }
 
   enterCar(): void {
@@ -44,16 +37,18 @@ export class HomeComponent implements OnInit {
       this.messageService.add({severity: 'error', summary: 'Error', detail: 'No car selected to enter'});
       return;
     }
+
     const parkingVO = new ParkingVO();
     parkingVO.car = this.selectedCar;
 
-    this.http.post('http://localhost:8080/parking/enter', parkingVO)
-      .toPromise().then(response => {
-      console.log(response);
-      this.messageService.add({severity: 'success', summary: 'Car parked successfully'});
+    this.restService.post('parking/enter', parkingVO)
+      .then(response => {
+        console.log(response);
+        this.messageService.add({severity: 'success', summary: 'Car parked successfully'});
+        this.selectedCar = null;
+      }).catch(err => {
       this.selectedCar = null;
-    }).catch(err => {
-      console.log(err);
+      console.error(err);
     });
 
   }
@@ -65,15 +60,15 @@ export class HomeComponent implements OnInit {
       return;
     }
 
-    this.http.post('http://localhost:8080/parking/exit/' + this.selectedCar.licensePlateNumber, null)
-      .toPromise().then(response => {
-      console.log(response);
-      this.messageService.add({severity: 'success', summary: 'Car parked successfully'});
+    this.restService.post('parking/exit/' + this.selectedCar.licensePlateNumber, null)
+      .then(response => {
+        console.log(response);
+        this.messageService.add({severity: 'success', summary: 'Car parking ended successfully'});
+        this.selectedCar = null;
+      }).catch(err => {
       this.selectedCar = null;
-    }).catch(err => {
       console.log(err);
     });
-    this.selectedCar = null;
   }
 
   search(event: any): void {

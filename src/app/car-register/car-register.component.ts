@@ -4,6 +4,7 @@ import {Message} from 'primeng/api';
 import {NgForm} from '@angular/forms';
 import {HttpClient} from '@angular/common/http';
 import {MessageService} from 'primeng/components/common/messageservice';
+import {RestService} from '../rest.service';
 
 @Component({
   selector: 'app-car-register',
@@ -16,7 +17,8 @@ export class CarRegisterComponent {
   carVO: CarVO;
 
   constructor(private http: HttpClient,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private restService: RestService) {
     console.log('CarRegisterComponent constructor');
     this.carVO = new CarVO();
   }
@@ -31,13 +33,13 @@ export class CarRegisterComponent {
       return;
     }
 
-    this.http.post('http://localhost:8080/car/save', this.carVO)
-      .toPromise().then(response => {
-      console.log(response);
-      this.messageService.add({severity: 'success', summary: 'Car saved successfully'});
-      carForm.resetForm();
-    }).catch(err => {
-      console.log(err);
+    this.restService.post('car/save', this.carVO)
+      .then(response => {
+        console.log(response);
+        this.messageService.add({severity: 'success', summary: 'Car saved successfully'});
+        carForm.resetForm();
+      }).catch(err => {
+      console.error(err);
     });
   }
 

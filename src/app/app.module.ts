@@ -22,6 +22,7 @@ import {HomeComponent} from './home/home.component';
 import {GrowlModule} from 'primeng/components/growl/growl';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
+import {RestService} from './rest.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
     CardModule,
     AutoCompleteModule
   ],
-  providers: [HttpClient, MessageService],
+  providers: [HttpClient, MessageService, RestService],
   bootstrap: [AppComponent]
 })
 export class AppModule {
