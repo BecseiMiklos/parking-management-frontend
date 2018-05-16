@@ -9,7 +9,7 @@ import {CarRegisterComponent} from './car-register/car-register.component';
 import {
   ButtonModule,
   CardModule,
-  CheckboxModule,
+  CheckboxModule, DialogModule,
   InputMaskModule,
   InputTextModule,
   MessageModule,
@@ -23,13 +23,19 @@ import {GrowlModule} from 'primeng/components/growl/growl';
 import {MessageService} from 'primeng/components/common/messageservice';
 import {AutoCompleteModule} from 'primeng/components/autocomplete/autocomplete';
 import {RestService} from './rest.service';
+import {SummaryComponent} from './summary/summary.component';
+import {ParkingComponent} from './parking/parking.component';
+import {TableModule} from 'primeng/table';
+import {ConfirmDialogModule} from 'primeng/components/confirmdialog/confirmdialog';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     CarRegisterComponent,
-    HomeComponent
+    HomeComponent,
+    SummaryComponent,
+    ParkingComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +52,10 @@ import {RestService} from './rest.service';
     MessageModule,
     GrowlModule,
     CardModule,
-    AutoCompleteModule
+    AutoCompleteModule,
+    TableModule,
+    ConfirmDialogModule,
+    DialogModule
   ],
   providers: [HttpClient, MessageService, RestService],
   bootstrap: [AppComponent]

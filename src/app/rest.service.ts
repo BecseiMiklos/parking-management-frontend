@@ -6,7 +6,8 @@ import {MessageService} from 'primeng/components/common/messageservice';
 @Injectable()
 export class RestService {
 
-  private static readonly BASE_URL = 'http://localhost:8080/';
+  // private static readonly BASE_URL = 'http://localhost:8080/';
+  private static readonly BASE_URL = '';
 
   constructor(private http: HttpClient,
               private msgService: MessageService) {

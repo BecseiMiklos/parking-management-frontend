@@ -63,7 +63,7 @@ export class HomeComponent implements OnInit {
     this.restService.post('parking/exit/' + this.selectedCar.licensePlateNumber, null)
       .then(response => {
         console.log(response);
-        this.messageService.add({severity: 'success', summary: 'Car parking ended successfully'});
+        this.messageService.add({severity: 'success', summary: 'Car parking ended successfully', detail: 'Parking cost is ' + response.data[0].paidCost + '.- HUF'});
         this.selectedCar = null;
       }).catch(err => {
       this.selectedCar = null;

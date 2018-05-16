@@ -26,10 +26,25 @@ export class CarRegisterComponent {
   saveNewCar(carForm: NgForm): void {
     this.msgs = [];
     console.log(this.carVO);
-    console.log(carForm.form.valid);
 
     if (!carForm.form.valid) {
-      this.messageService.add({severity: 'error', summary: 'Error', detail: 'Validation failed'});
+      const requiredFields = [];
+      Object.keys(carForm.controls).forEach(control => {
+        const c = carForm.controls[control];
+        if (c.errors) {
+          if (c.errors.required) {
+            requiredFields.push(control);
+          }
+        }
+      });
+      let errorMsg;
+      if (requiredFields.length !== 0) {
+        errorMsg = requiredFields.join(', ') + (requiredFields.length === 1 ? ' is' : ' are') + ' required!';
+      } else {
+        errorMsg = 'Validation failed!';
+      }
+
+      this.messageService.add({severity: 'error', summary: 'Error', detail: errorMsg});
       return;
     }
 
